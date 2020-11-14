@@ -2,7 +2,7 @@
 
 namespace Kata;
 
-class Index
+class Bowling
 {
     public function handle(): bool
     {
