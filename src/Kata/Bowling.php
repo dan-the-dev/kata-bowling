@@ -12,7 +12,7 @@ class Bowling
         $this->frames = new Frames();
     }
 
-    public function roll(Pins $pins): void
+    public function roll(Roll $pins): void
     {
         $this->frames->roll($pins);
     }

@@ -5,6 +5,7 @@ namespace Kata;
 class Frames
 {
     private $currentFrame = 1;
+    /** @var array<array<Roll>> $frames */
     private $frames = [
         1 => [],
         2 => [],
@@ -18,10 +19,10 @@ class Frames
         10 => [],
     ];
 
-    public function roll(Pins $pins)
+    public function roll(Roll $pins)
     {
-        $this->frames[$this->currentFrame][] = $pins->value();
-        if (count($this->frames[$this->currentFrame]) === 2) {
+        $this->frames[$this->currentFrame][] = $pins;
+        if ($this->frameIsOver() || $this->rollIsStrike($pins)) {
             $this->currentFrame++;
         }
     }
@@ -34,5 +35,18 @@ class Frames
     public function currentFrame(): int
     {
         return $this->currentFrame;
+    }
+
+    /**
+     * @return bool
+     */
+    public function frameIsOver(): bool
+    {
+        return count($this->frames[$this->currentFrame]) === 2;
+    }
+
+    private function rollIsStrike(Roll $pins): bool
+    {
+        return $pins->isStrike();
     }
 }
