@@ -13,7 +13,8 @@ An open frame is where a score of less than 10 is recorded for the frame. In thi
 
 A spare is where all ten pins are knocked down by the second throw. The total value of a spare is 10 plus the number of pins knocked down in their next throw.
 
-A strike is where all ten pins are knocked down by the first throw. The total value of a strike is 10 plus the number of pins knocked down in the next two throws. If a strike is immediately followed by a second strike, then the value of the first strike cannot be determined until the ball is thrown one more time.
+A strike is where all ten pins are knocked down by the first throw. The total value of a strike is 10 plus the number of pins knocked down in the next two throws. 
+If a strike is immediately followed by a second strike, then the value of the first strike cannot be determined until the ball is thrown one more time.
 
 Here is a three frame example:
 
@@ -27,7 +28,10 @@ Frame 3 is (9 + 0) = 9
 
 This means the current running total is 48.
 
-The tenth frame in the game is a special case. If someone throws a strike or a spare then they get a fill ball. Fill balls exist to calculate the total of the 10th frame. Scoring a strike or spare on the fill ball does not give the player more fill balls. The total value of the 10th frame is the total number of pins knocked down.
+The tenth frame in the game is a special case. If someone throws a strike or a spare then they get a fill ball. 
+Fill balls exist to calculate the total of the 10th frame. 
+Scoring a strike or spare on the fill ball does not give the player more fill balls. 
+The total value of the 10th frame is the total number of pins knocked down.
 
 For a tenth frame of X1/ (strike and a spare), the total value is 20.
 
@@ -38,3 +42,17 @@ Write code to keep track of the score of a game of bowling. It should support tw
 
 roll(pins : int) is called each time the player rolls a ball. The argument is the number of pins knocked down.
 score() : int is called only at the very end of the game. It returns the total score for that game.
+
+
+# Test list
+
+Run tests: `vendor/phpunit/phpunit/phpunit tests`
+
+- [ ] Roll called with 1 pin set the score to 1
+- [ ] Roll called with 9 pin set the score to 9
+- [ ] Roll called with 1 pin then called with 8 pin set the score to 9
+- [ ] The game goes on with the next frame after 2 rolls
+- [ ] Test spare frame
+- [ ] Test strike frame
+- [ ] ... particular cases of spare & strike ...
+- [ ] The game stops after 10 frames
