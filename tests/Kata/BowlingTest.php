@@ -21,9 +21,17 @@ class BowlingTest extends TestCase
         $this->assertEquals(1, $this->bowling->score());
     }
 
-    public function testRollKnockedDownNinePin(): void
+    public function testRollKnockedDownNinePins(): void
     {
         $this->bowling->roll(9);
+
+        $this->assertEquals(9, $this->bowling->score());
+    }
+
+    public function testFrameMadeByTwoRollsOneAndEightPins(): void
+    {
+        $this->bowling->roll(1);
+        $this->bowling->roll(8);
 
         $this->assertEquals(9, $this->bowling->score());
     }

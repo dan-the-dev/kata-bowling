@@ -5,11 +5,11 @@ namespace Kata;
 class Bowling
 {
     /** @var int $score */
-    private $score;
+    private $score = 0;
 
     public function roll(int $pins): void
     {
-        $this->score = $pins;
+        $this->score += $pins;
     }
 
     public function score(): int
