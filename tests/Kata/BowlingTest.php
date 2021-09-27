@@ -36,4 +36,15 @@ class BowlingTest extends TestCase
         $this->assertEquals(9, $this->bowling->score());
     }
 
+    public function testSpareFramePointsIsCorrectlyCalculated(): void
+    {
+        $this->bowling->roll(8);
+        $this->bowling->roll(2);
+
+        $this->bowling->roll(2);
+        $this->bowling->roll(3);
+
+        $this->assertEquals(17, $this->bowling->score());
+    }
+
 }

@@ -50,9 +50,8 @@ Run tests: `vendor/phpunit/phpunit/phpunit tests`
 
 - [x] Roll called with 1 pin set the score to 1
 - [x] Roll called with 9 pin set the score to 9
-- [ ] **Roll called with 1 pin then called with 8 pin set the score to 9**
-- [ ] The game goes on with the next frame after 2 rolls
-- [ ] Test spare frame
+- [x] Roll called with 1 pin then called with 8 pin set the score to 9
+- [ ] **Test spare frame**
 - [ ] Test strike frame
 - [ ] ... particular cases of spare & strike ...
 - [ ] The game stops after 10 frames
