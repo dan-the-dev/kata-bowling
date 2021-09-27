@@ -4,5 +4,16 @@ namespace Kata;
 
 class Bowling
 {
+    /** @var int $score */
+    private $score;
 
+    public function roll(int $pins): void
+    {
+        $this->score = $pins;
+    }
+
+    public function score(): int
+    {
+        return $this->score;
+    }
 }
