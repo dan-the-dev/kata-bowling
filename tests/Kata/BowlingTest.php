@@ -14,13 +14,4 @@ class BowlingTest extends TestCase
         $this->bowling = new Bowling();
     }
 
-    public function testShallPass(): void
-    {
-        $this->assertEquals(1, 1);
-    }
-
-    public function testHandleReturnTrue(): void
-    {
-        $this->assertEquals(true, $this->bowling->handle());
-    }
 }
