@@ -47,4 +47,5 @@ class BowlingTest extends TestCase
         $this->assertEquals(17, $this->bowling->score());
     }
 
+
 }
