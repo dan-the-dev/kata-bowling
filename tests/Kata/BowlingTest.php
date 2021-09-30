@@ -38,10 +38,12 @@ class BowlingTest extends TestCase
     public function testSparePointsAreWellCalculated(): void
     {
         $this->bowling->roll(4);
+        $this->assertEquals(4, $this->bowling->score());
         $this->bowling->roll(6);
+        $this->assertEquals(10, $this->bowling->score());
         $this->bowling->roll(2);
+        $this->assertEquals(14, $this->bowling->score());
         $this->bowling->roll(2);
-
         $this->assertEquals(16, $this->bowling->score());
     }
 
@@ -53,6 +55,28 @@ class BowlingTest extends TestCase
         $this->assertEquals(12, $this->bowling->score());
         $this->bowling->roll(3);
         $this->assertEquals(20, $this->bowling->score());
+    }
+
+    public function testFullGameWithoutStrikeAndSpares(): void
+    {
+        $this->simpleFrameRolls();
+        $this->simpleFrameRolls();
+        $this->simpleFrameRolls();
+        $this->simpleFrameRolls();
+        $this->simpleFrameRolls();
+        $this->simpleFrameRolls();
+        $this->simpleFrameRolls();
+        $this->simpleFrameRolls();
+        $this->simpleFrameRolls();
+        $this->simpleFrameRolls();
+
+        $this->assertEquals(50, $this->bowling->score());
+    }
+
+    private function simpleFrameRolls(): void
+    {
+        $this->bowling->roll(3);
+        $this->bowling->roll(2);
     }
 
 }
