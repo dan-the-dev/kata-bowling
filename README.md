@@ -49,5 +49,8 @@ Run tests: `vendor/phpunit/phpunit/phpunit tests`
 - [x] Roll called with 1 pin then called with 8 pin set the score to 9
 - [x] Test spare frame
 - [x] Test strike frame
-- [ ] ... particular cases of spare & strike ...
+- [x] Strike after spare
+- [x] Spare after strike
 - [ ] The game stops after 10 frames
+- [ ] Spare at 10 frame
+- [ ] Strike at 10 frame

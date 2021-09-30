@@ -4,7 +4,8 @@ namespace Kata;
 
 class Bowling
 {
-
+    const FRAMES_PER_GAME = 10;
+    const ROLLS_PER_FRAME = 2;
     /** @var int $score */
     private $score = 0;
     /** @var array<int> $rollHistory */
@@ -17,6 +18,10 @@ class Bowling
 
     public function roll(int $pins)
     {
+        if ($this->gameIsOver()) {
+            throw new GameOverException();
+        }
+
         $this->score += $pins;
         array_push($this->rollHistory, $pins);
 
@@ -97,5 +102,13 @@ class Bowling
         if ($pins === 10) {
             array_push($this->rollHistory, 0);
         }
+    }
+
+    /**
+     * @return bool
+     */
+    private function gameIsOver(): bool
+    {
+        return count($this->rollHistory) >= self::FRAMES_PER_GAME * self::ROLLS_PER_FRAME;
     }
 }
