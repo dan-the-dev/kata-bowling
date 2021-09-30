@@ -21,10 +21,12 @@ class Bowling
         array_push($this->rollHistory, $pins);
 
         if ($this->isFirstRollInFrame()) {
-            $previousFrameScore = $this->getPreviousFrameScore();
-            if ($previousFrameScore === 10) {
-                $this->score += $pins;
-            }
+            $this->handleSparePoints($pins);
+            $this->addEmptyRollForStrike($pins);
+        }
+
+        if ($this->isLastRollInFrame()) {
+            $this->handleStrikePoints($pins);
         }
     }
 
@@ -37,13 +39,63 @@ class Bowling
     }
 
     /**
-     * @return float|int
+     * @return bool
      */
-    private function getPreviousFrameScore()
+    private function isLastRollInFrame(): bool
     {
-        if (count($this->rollHistory) === 1){
-            return 0;
+        return count($this->rollHistory) % 2 === 0;
+    }
+
+    private function previousFrameWasSpare(): bool
+    {
+        if (count($this->rollHistory) <= 2) {
+            return false;
         }
-        return array_sum(array_slice($this->rollHistory, -3, 2));
+        $previousFrame = array_slice($this->rollHistory, -3, 2);
+        $firstRoll = array_slice($previousFrame, 0, 1)[0];
+        $secondRoll = array_slice($previousFrame, 1, 1)[0];
+        return $firstRoll + $secondRoll === 10 && $secondRoll != 0;
+    }
+
+    private function previousFrameWasStrike(): bool
+    {
+        if (count($this->rollHistory) <= 2) {
+            return false;
+        }
+        $previousFrame = array_slice($this->rollHistory, -4, 2);
+        $firstRoll = array_slice($previousFrame, 0, 1)[0];
+        $secondRoll = array_slice($previousFrame, 1, 1)[0];
+        return $firstRoll === 10 && $secondRoll === 0;
+    }
+
+    /**
+     * @param int $pins
+     */
+    private function handleSparePoints(int $pins): void
+    {
+        if ($this->previousFrameWasSpare()) {
+            $this->score += $pins;
+        }
+    }
+
+    /**
+     * @param int $pins
+     */
+    private function handleStrikePoints(int $pins): void
+    {
+        if ($this->previousFrameWasStrike()) {
+            $previousRollPins = array_slice($this->rollHistory, -2, 1)[0];
+            $this->score += $pins + $previousRollPins;
+        }
+    }
+
+    /**
+     * @param int $pins
+     */
+    private function addEmptyRollForStrike(int $pins): void
+    {
+        if ($pins === 10) {
+            array_push($this->rollHistory, 0);
+        }
     }
 }

@@ -3,7 +3,6 @@
 namespace Kata;
 
 use PHPUnit\Framework\TestCase;
-use Kata\Bowling;
 
 class BowlingTest extends TestCase
 {
@@ -36,7 +35,7 @@ class BowlingTest extends TestCase
         $this->assertEquals(4, $this->bowling->score());
     }
 
-    public function testSpareIsRecognized(): void
+    public function testSparePointsAreWellCalculated(): void
     {
         $this->bowling->roll(4);
         $this->bowling->roll(6);
@@ -44,6 +43,16 @@ class BowlingTest extends TestCase
         $this->bowling->roll(2);
 
         $this->assertEquals(16, $this->bowling->score());
+    }
+
+    public function testStrikePointsAreWellCalculated(): void
+    {
+        $this->bowling->roll(10);
+        $this->assertEquals(10, $this->bowling->score());
+        $this->bowling->roll(2);
+        $this->assertEquals(12, $this->bowling->score());
+        $this->bowling->roll(3);
+        $this->assertEquals(20, $this->bowling->score());
     }
 
 }
