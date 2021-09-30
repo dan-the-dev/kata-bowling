@@ -38,3 +38,16 @@ Write code to keep track of the score of a game of bowling. It should support tw
 
 roll(pins : int) is called each time the player rolls a ball. The argument is the number of pins knocked down.
 score() : int is called only at the very end of the game. It returns the total score for that game.
+
+
+# Test list
+
+Run tests: `vendor/phpunit/phpunit/phpunit tests`
+
+- [x] Roll called with 1 pin set the score to 1
+- [x] Roll called with 9 pin set the score to 9
+- [x] Roll called with 1 pin then called with 8 pin set the score to 9
+- [x] Test spare frame
+- [x] Test strike frame
+- [ ] ... particular cases of spare & strike ...
+- [ ] The game stops after 10 frames
